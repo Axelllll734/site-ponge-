@@ -1,0 +1,290 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------
+   CHEBKA — design tokens
+   Palette de marque : rouge signature, bleu nuit, kraft, crème,
+   blanc cassé, terracotta secondaire. Fonds clairs, touches de rouge.
+------------------------------------------------------------------- */
+@theme {
+  --color-rouge: #c83d36;
+  --color-rouge-fonce: #a8312b;
+  --color-nuit: #202747;
+  --color-nuit-doux: #4a5070;
+  --color-kraft: #cba77f;
+  --color-kraft-clair: #e2cfb5;
+  --color-creme: #f3eee5;
+  --color-blanc: #faf9f6;
+  --color-terracotta: #b9653e;
+  --color-trait: #e4dccf;
+
+  --font-serif: var(--font-fraunces), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-manrope), system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --ease-doux: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background: var(--color-blanc);
+    color: var(--color-nuit);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--color-rouge);
+    color: var(--color-blanc);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-rouge);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@layer components {
+  .container-chebka {
+    width: 100%;
+    max-width: 78rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 768px) {
+    .container-chebka {
+      padding-inline: 2rem;
+    }
+  }
+
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-rouge);
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 999px;
+    padding: 0.85rem 1.6rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    line-height: 1.2;
+    transition:
+      transform 0.25s var(--ease-doux),
+      background-color 0.25s var(--ease-doux),
+      color 0.25s var(--ease-doux),
+      box-shadow 0.25s var(--ease-doux);
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  .btn-primary {
+    background: var(--color-rouge);
+    color: var(--color-blanc);
+    box-shadow: 0 8px 24px -12px rgb(200 61 54 / 0.7);
+  }
+  .btn-primary:hover:not(:disabled) {
+    background: var(--color-rouge-fonce);
+    transform: translateY(-1px);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--color-nuit);
+    box-shadow: inset 0 0 0 1.5px var(--color-nuit);
+  }
+  .btn-secondary:hover:not(:disabled) {
+    background: var(--color-nuit);
+    color: var(--color-blanc);
+  }
+  .btn-nuit {
+    background: var(--color-nuit);
+    color: var(--color-blanc);
+  }
+  .btn-nuit:hover:not(:disabled) {
+    background: #151a33;
+    transform: translateY(-1px);
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-doux);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-trait);
+    background: var(--color-blanc);
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    color: var(--color-nuit);
+    transition:
+      border-color 0.2s,
+      box-shadow 0.2s;
+  }
+  .field:focus {
+    outline: none;
+    border-color: var(--color-nuit);
+    box-shadow: 0 0 0 3px rgb(32 39 71 / 0.12);
+  }
+  .field[aria-invalid="true"] {
+    border-color: var(--color-rouge);
+  }
+
+  /* Texte long (pages éditoriales et juridiques) */
+  .prose-chebka {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--color-nuit);
+  }
+  .prose-chebka h2 {
+    font-size: 1.6rem;
+    line-height: 1.2;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-chebka h3 {
+    font-size: 1.2rem;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  .prose-chebka p,
+  .prose-chebka ul {
+    margin-bottom: 1rem;
+  }
+  .prose-chebka ul {
+    list-style: disc;
+    padding-left: 1.25rem;
+  }
+  .prose-chebka a {
+    color: var(--color-rouge);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+/* Révélation au scroll — discrète, désactivée si l'utilisateur
+   préfère réduire les animations. */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity 0.9s var(--ease-doux),
+    transform 0.9s var(--ease-doux);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-bump {
+  animation: bump 0.45s var(--ease-doux);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-toast {
+  animation: toast-in 0.35s var(--ease-doux);
+}
+
+@keyframes drip {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(46px);
+    opacity: 0;
+  }
+}
+.animate-drip {
+  animation: drip 2.4s ease-in infinite;
+}
+
+@keyframes air {
+  0% {
+    transform: translateX(-14px);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateX(26px);
+    opacity: 0;
+  }
+}
+.animate-air {
+  animation: air 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-bump,
+  .animate-toast,
+  .animate-drip,
+  .animate-air {
+    animation: none;
+  }
+}
